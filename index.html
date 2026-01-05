@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Timetable Manager</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>📅 Timetable Manager</h1>
+
+    <form method="POST">
+        <input type="text" name="task" placeholder="Enter task (e.g. Brushing)" required>
+        <input type="time" name="time" required>
+        <button type="submit">Add Task</button>
+    </form>
+
+    <h2>Your Tasks</h2>
+
+    {% if timetable %}
+        <ol>
+            {% for task, time in timetable %}
+                <li>{{ task }} at {{ time }}</li>
+            {% endfor %}
+        </ol>
+    {% else %}
+        <p>No tasks added yet.</p>
+    {% endif %}
+</div>
+
+</body>
+</html>
